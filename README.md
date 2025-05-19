@@ -1,64 +1,82 @@
-# Fake Data Generator
+# 🔐 Encryption & Hashing Utilities
 
-This Python script generates fake personal and business data using the [Faker](https://faker.readthedocs.io/en/master/) library. It allows users to choose the language/locale for the fake data, and repeatedly generate new entries in that language until they choose to exit.
+A simple Python module that provides:
 
----
-
-## Features
-
-- Supports multiple languages:
-  - English (`en_US`)
-  - Hebrew (`he_IL`)
-  - Italian (`it_IT`)
-  - Japanese (`ja_JP`)
-- Generates fake:
-  - Name
-  - Address
-  - Email
-  - Phone Number
-  - Company
-- Uses a counter to label each generated entry
-- Runs in an interactive loop until the user chooses to exit
+- AES encryption using Fernet.
+- SHA-256 hashing for strings and files.
 
 ---
 
-## Code Structure
+## 📦 Dependencies
 
-### Language Options
+```bash
+pip install cryptography
+```
+
+---
+
+## 📄 Overview
+
+This module contains:
+
+- `FernetEncryptor`: Class to encrypt data using the `Fernet` symmetric encryption.
+- `hash_sha256()`: Function to hash byte data using SHA-256.
+- `hash_file()`: Function to hash a file's contents using SHA-256.
+
+---
+
+## 🔐 FernetEncryptor Class
+
+### ✅ Constructor
 
 ```python
-language_options = {
-    '1': ('English', 'en_US'),
-    '2': ('Hebrew', 'he_IL'),
-    '3': ('Italian', 'it_IT'),
-    '4': ('Japanese', 'ja_JP'),
-}
+FernetEncryptor(key=None)
 ```
+- `key` (optional): Provide a Fernet key. If not provided, a new one will be generated.
 
-### Functions
+### 🔒 Methods
 
-- `display_languages()`: Prints the list of supported languages.
-- `generate_fake_data(fake)`: Prints fake data for the selected locale.
-- `main()`: Main loop that prompts the user to select a language or exit.
+#### `encrypt(ct: str | bytes, out=bytes | str)`
+
+Encrypts the given content.
+
+- `ct`: The plaintext as `str` or `bytes`.
+- `out`: Output format. Either `bytes` or `str` (hex encoded).
+
+**Returns:** Encrypted data in specified format.
 
 ---
 
-## Requirements
+## 🧮 Hashing Functions
 
-Install the Faker library before running the script:
+### `hash_sha256(data: bytes, out=str | bytes)`
 
-```bash
-pip install faker
-```
+Hashes the given byte data using SHA-256.
+
+- `data`: Input data as `bytes`.
+- `out`: Output format (`str` for hex, `bytes` for raw digest).
+
+**Returns:** SHA-256 hash.
 
 ---
 
-## Usage
+### `hash_file(file_path)`
 
-Run the script in a Python environment:
+Hashes a file's contents using SHA-256.
 
-```bash
-python fake_data.py
+- `file_path`: Path to the file.
+
+**Returns:** Hex digest of the file hash.
+
+---
+
+## 🚀 Usage Example
+
+```python
+if __name__ == "__main__":
+    encryptor = FernetEncryptor()
+    print(encryptor.encrypt(b"Bruhhh", str))
+    print(encryptor.encrypt(b"Bruhhh", bytes))
+
+    print(hash_sha256(b"Bah Bah Black Ship"))
 ```
-
-Follow the prompts to choose a language and generate data.
