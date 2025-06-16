@@ -88,8 +88,8 @@ def show_html_with_highlight(url, target_word):
         tk.messagebox.showerror("Error", f"Failed to fetch URL:\n{e}")
 
 # Example usage:
-show_html_with_highlight("https://google.com", "google")
+# show_html_with_highlight("https://google.com", "google")
 
-# Example usage:
-highlight_word_in_url_with_parsing(
-    "https://en.wikipedia.org/wiki/Wiki", "Extreme")
+# # Example usage:
+# highlight_word_in_url_with_parsing(
+#     "https://en.wikipedia.org/wiki/Wiki", "Extreme")
