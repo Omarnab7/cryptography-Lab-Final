@@ -13,9 +13,9 @@ class LengthNotDivisibleError(CipherTextError):
 class SubsetDivisibilityError(CipherTextError):
     pass
 
-def validate_cipher(ciphertext: str, num_subsets: int, digit_divisor: int):
-    if not ciphertext.isdigit():
-        raise NonDigitInputError("Cipher text must contain only digits.")
+def validate_cipher(ciphertext, num_subsets: int, digit_divisor: int):
+    # if not ciphertext.isdigit():
+    #     raise NonDigitInputError("Cipher text must contain only digits.")
 
     total_length = len(ciphertext)
     
