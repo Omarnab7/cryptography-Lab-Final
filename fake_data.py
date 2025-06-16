@@ -7,6 +7,7 @@ language_options = {
     '2': ('Hebrew', 'he_IL'),
     '3': ('Italian', 'it_IT'),
     '4': ('Japanese', 'ja_JP'),
+    '5': ('Arabic', 'ar_LB'),
 }
 
 def display_languages():
@@ -18,23 +19,31 @@ def generate_fake_data(fake):
     global counter
     counter += 1
     print("-" * 38 + f"{counter}")
-    print(f"Name: {fake.name()}")
-    print(f"Address: {fake.address()}")
-    print(f"Email: {fake.email()}")
-    print(f"Phone: {fake.phone_number()}")
-    print(f"Company: {fake.company()}")
+    name = fake.name()
+    address = fake.address()
+    email = fake.email()
+    phone = fake.phone_number()
+    company = fake.company()
+
+    print(f"Name: {name}")
+    print(f"Address: {address}")
+    print(f"Email: {email}")
+    print(f"Phone: {phone}")
+    print(f"Company: {company}")
     print("-" * 40)
+
+    return [name, address, email, phone, company]
 
 def main():
     while True:
         display_languages()
 
         try:
-            choice = input("Enter your choice ( 1-4 | 5 to Exit ): ").strip()
+            choice = input("Enter your choice ( 1-5 | 6 to Exit ): ").strip()
         except ValueError as e:
             return f"Not a valid number FAKER! - {e}"
 
-        if choice == "5":
+        if choice == "6":
             print("See  U later FAKER")
             return
         
